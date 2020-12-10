@@ -1,0 +1,25 @@
+{
+  "rice": [
+    {
+      "name": "motherindia",
+      "price": 30,
+      "weight": 100,
+      "totalprice": 3000
+    },
+    {
+      "name": "0",
+      "price": 0,
+      "weight": 0,
+      "totalprice": 0
+    }
+  ],
+  "pulses": [
+    {
+      "name": null,
+      "price": 0,
+      "weight": 0,
+      "totalprice": 0
+    }
+  ],
+  "wheat": []
+}
