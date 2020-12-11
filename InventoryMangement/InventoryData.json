@@ -1,43 +1,43 @@
 {
   "Data": {
       "rice": [{
-          "name": "dawat",
+          "name": "MotherIndia",
           "weight": "10",
-          "price": "50"
+          "price": "60"
       }, {
-          "name": "Indiagate",
+          "name": "basmati",
           "weight": "10",
           "price": "100"
       }, {
-          "name": "brown",
+          "name": "White",
           "weight": "10",
           "price": "200"
       }],
       "wheat": [{
           "name": "ashirvad",
           "weight": "10",
-          "price": "50"
+          "price": "80"
       }, {
-          "name": "local",
+          "name": "jasmine",
           "weight": "10",
           "price": "30"
       }, {
           "name": "polished",
           "weight": "10",
-          "price": "200"
+          "price": "300"
       }],
       "pulse": [{
-          "name": "beans",
+          "name": "Sticky",
           "weight": "10",
-          "price": "50"
+          "price": "90"
       }, {
-          "name": "peas",
+          "name": "Black",
           "weight": "10",
-          "price": "100"
+          "price": "110"
       }, {
-          "name": "lupin",
+          "name": "arborio",
           "weight": "10",
-          "price": "100"
+          "price": "90"
       }]
      
   }
