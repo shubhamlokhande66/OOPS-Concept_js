@@ -1,0 +1,31 @@
+{
+  "Stock": [
+    {
+      "Stockname": [
+        "Mahendra Ltd"
+      ],
+      "NumberShare": [
+        "20"
+      ],
+      "Shareprice": [
+        "200"
+      ],
+      "totalprice": 4000
+    },
+    {
+      "Stockname": [
+        "Century Enka Ltd",
+        "Honywell"
+      ],
+      "NumberShare": [
+        "50",
+        "90"
+      ],
+      "Shareprice": [
+        "600",
+        "900"
+      ],
+      "totalprice": 30000
+    }
+  ]
+}
