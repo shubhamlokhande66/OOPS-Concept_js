@@ -1,84 +1,81 @@
-/*****************************************************************
- * @Purpose : Inventory Management 
- * @description : Read and writes data into json file
- * @file : InvntoryManagemntBusinessLogic.js
- * @author: Shubham LOkhande
- * @since : 12-10-2020
- *****************************************************************/
-const fs = require('fs');
+/*******************************************************************************************************
+ * @problem : Json objects of rice, pulses and wheat,  calculate total from price and weight
+ * @fileName : InventoryManagementBusinessLogic.js
+ * * @Auther  : Shubham Lokhande
+ *******************************************************************************/
 
-let data = fs.readFileSync('./InventoryData.json');
-let inventoryData = JSON.parse(data);
-/** 
- * @module - it will add new rice type to json file
- * @param {string} name
- * @param {number} price
- * @param {number} weight
-*/
+fs = require('fs');
+class Inventory {
+    constructor() {
+        this.content = null;
+        this.fileName = null;
+    }
+    /* @description: jsonParse
+    * @purpose: it reads json file from given adress and convert it to script obj.
+    * 
+    */
 
-function addRice(name, price, weight){
-    let newRice = {
-        "name" : name,
-        "price" : price,
-        "weight" : weight
+    jsonParse(fileName) {
+        this.fileName = fileName;
+        this.content = JSON.parse(fs.readFileSync(fileName));
+
     }
-    inventoryData.rice[inventoryData.rice.length] = newRice
-    for(let i=0; i<inventoryData.rice.length; i++ ) {
-       //Total price Calculated
-        inventoryData.rice[i].totalprice = 
-        parseInt (inventoryData.rice[i].price) * parseInt (inventoryData.rice[i].weight)
+    display() {
+        console.log(this.content.Data);
     }
-    fs.writeFileSync('./InventoryData.json', JSON.stringify(inventoryData, null, 2));
-    console.log(JSON.stringify(inventoryData.rice[inventoryData.rice.length-1]) +"added to JSON data")
+
+    /* @description : value
+    * @purpose:   it calculate value of inventory
+    */
+
+
+    value() {
+        let total = 0;
+        let riceSum = 0;
+        this.content.Data.rice.forEach(element => {
+            riceSum = riceSum + element.price * element.weight
+
+        });
+        let whaetSum = 0;
+        this.content.Data.wheat.forEach(element => {
+            whaetSum = whaetSum + element.price * element.weight
+
+        });
+        let pulsesSum = 0;
+        this.content.Data.pulse.forEach(element => {
+            pulsesSum = pulsesSum + element.price * element.weight
+
+        });
+
+        total = riceSum + whaetSum + pulsesSum;
+        console.log('total value of rice ' + riceSum + "rs");
+        console.log('total value of wheat ' + whaetSum + "rs");
+        console.log('total value of pulse ' + pulsesSum + "rs");
+        console.log('total value of inventories ' + total + "rs");
+    }
+
+    /* @description : addCategory
+    * @purpose:  it creat category(empty array).
+    * @param {data}, which has data information.
+    */
+    addCategory(category = null) {
+
+        this.content.Data[category] = [];
+    }
+
+    addElements(category, name, weight, price) {
+        this.content.Data[category].push({
+            "name": name,
+            "weight": weight,
+            "price": price,
+
+        })
+
+    }
+
+    saveFile() {
+        fs.writeFile(this.fileName, JSON.stringify(this.content));
+    }
 }
 
-/** 
- * @module - it will add new pulses type to json file
- * @param {string} name
- * @param {number} price
- * @param {number} weight
-*/
-
-function addPulses(name, price, weight){
-    let newPulses = {
-        "name" : name,
-        "price" : price,
-        "weight" : weight
-    }
-    inventoryData.pulses[inventoryData.pulses.length] = newPulses
-     //Total price Calculated
-    for(let i=0; i<inventoryData.pulses.length; i++ ) {
-        inventoryData.pulses[i].totalprice = 
-        parseInt (inventoryData.pulses[i].price) * parseInt (inventoryData.pulses[i].weight)
-    }
-    fs.writeFileSync('./InventoryData.json', JSON.stringify(inventoryData, null, 2));
-    console.log(JSON.stringify(inventoryData.pulses[inventoryData.pulses.length-1]) +"added to JSON data")
-}
-
-/** 
- * @module - it will add new Wheat type to json file
- * @param {string} name
- * @param {number} price
- * @param {number} weight
-*/
-function addWheat(name, price, weight){
-    let newWheat = {
-        "name" : name,
-        "price" : price,
-        "weight" : weight
-    }
-    inventoryData.wheat[inventoryData.wheat.length] = newWheat
-     //Total price Calculated
-    for(let i=0; i<inventoryData.wheat.length; i++ ) {
-        inventoryData.wheat[i].totalprice = 
-        parseInt (inventoryData.wheat[i].price) * parseInt (inventoryData.wheat[i].weight)
-    }
-    fs.writeFileSync('./InventoryData.json', JSON.stringify(inventoryData, null, 2));
-    console.log(JSON.stringify(inventoryData.wheat[inventoryData.wheat.length-1]) +"added to JSON data")
-}
-
-module.exports = {
-    addRice, 
-    addPulses,
-    addWheat
-}
+module.exports = Inventory;
