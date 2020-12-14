@@ -46,9 +46,13 @@ function addStock(Stockname,NumberShare,Shareprice){
 
    
 }
+function printReport() {
+    console.log(JSON.stringify(inventoryData, null, 2));
+    
 
+     }
 
 
 module.exports = {
-    addStock 
+    addStock , printReport
 }
